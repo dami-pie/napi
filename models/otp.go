@@ -2,7 +2,7 @@ package models
 
 import (
 	"errors"
-	"github.com/dami-pie/api/internal/config"
+	"github.com/dami-pie/napi/src/config"
 	"time"
 
 	"github.com/pquerna/otp/totp"
