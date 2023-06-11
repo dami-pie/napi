@@ -16,6 +16,8 @@ services:
       MYSQL_USER: dbu
       MYSQL_PASSWORD: brunorubro
       MYSQL_DB: dami
+    depends_on:
+      - mysql
   mysql:
     container_name: dami-db
     hostname: db
