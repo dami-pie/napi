@@ -1,0 +1,11 @@
+services:
+  api:
+    image: sevlak0ff/dami-pie
+    command: sh -c "./dami-api"
+    ports:
+      - 8080:443
+    working_dir: /dami
+    volumes:
+      - api:/dami/certs
+volumes:
+  api:
