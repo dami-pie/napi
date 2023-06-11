@@ -1,11 +1,31 @@
 services:
   api:
-    image: sevlak0ff/dami-pie
+    container_name: dami-api
+    hostname: dami
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
     command: sh -c "./dami-api"
     ports:
       - 8080:443
     working_dir: /dami
     volumes:
       - api:/dami/certs
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: dbu
+      MYSQL_PASSWORD: brunorubro
+      MYSQL_DB: dami
+  mysql:
+    container_name: dami-db
+    hostname: db
+    image: mysql
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: brunorubro
+      MYSQL_DATABASE: dami
+
 volumes:
   api:
+  db:

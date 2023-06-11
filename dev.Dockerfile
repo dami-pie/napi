@@ -1,4 +1,4 @@
-FROM golang AS builder
+FROM golang AS build-stage
 LABEL authors="sevlak0ff"
 WORKDIR /dami
 COPY . .
@@ -16,7 +16,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -o dami-api .
 
 FROM rabbitmq:3.12.0-alpine
 WORKDIR /dami
-COPY --from=builder /dami .
+COPY --from=build-stage /dami .
 
 #mesmo criando um certificado, não iremos usá-lo
 #TODO: resolver o bug "bad record MAC error"/"EOF" ao fazer um request https
@@ -25,5 +25,3 @@ RUN openssl req -x509 -out localhost.crt -keyout localhost.key \
       -subj '/CN=dami' && \
     mv localhost.crt certs/ && \
     mv localhost.key certs/
-
-ENTRYPOINT ["./dami-api"]
