@@ -1,0 +1,35 @@
+services:
+  api:
+    container_name: dami-api
+    hostname: dami
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    command: sh -c "./dami-api"
+    ports:
+      - 8080:443
+    working_dir: /dami
+    volumes:
+      - api:/dami/certs
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: dbu
+      MYSQL_PASSWORD: brunorubro
+      MYSQL_DB: dami
+    depends_on:
+      - mysql
+  mysql:
+    container_name: dami-db
+    hostname: database
+    image: mysql
+    ports: #necessário mapear do conteiner para o host para acessar o mysql da workbench, por exemplo
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: brunorubro
+      MYSQL_DATABASE: dami
+
+volumes:
+  api:
+  db:

@@ -1,0 +1,26 @@
+name: deploy-to-server
+run-name: Fazendo deploy da main em produção
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  access-server-and-compose-containers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /home/napi
+            git pull
+            MYSQL_USER=${{ secrets.MYSQL_USER }} \
+            MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
+            MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build api -d
+          script_stop: true
