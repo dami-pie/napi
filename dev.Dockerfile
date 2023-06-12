@@ -29,5 +29,6 @@ COPY --from=build-stage /api .
 RUN openssl req -x509 -out localhost.crt -keyout localhost.key \
       -newkey rsa:2048 -nodes -sha256 \
       -subj '/CN=dami' && \
+    mkdir certs && \
     mv localhost.crt certs/ && \
     mv localhost.key certs/

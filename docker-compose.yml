@@ -8,7 +8,6 @@ services:
     command: sh -c "./dami-api"
     ports:
       - 8080:443
-    working_dir: /dami
     volumes:
       - api:/dami/certs
     environment:
