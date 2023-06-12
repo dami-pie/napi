@@ -20,8 +20,10 @@ services:
       - mysql
   mysql:
     container_name: dami-db
-    hostname: db
+    hostname: database
     image: mysql
+    ports: #necessário mapear do conteiner para o host para acessar o mysql da workbench, por exemplo
+      - 3306:3306
     volumes:
       - db:/var/lib/mysql
     environment:
