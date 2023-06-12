@@ -19,5 +19,8 @@ jobs:
           script: |
             cd /home/dami/napi
             git pull
-            MYSQL_USER=${{ secrets.MYSQL_USER }} MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build api -d
+            export MYSQL_USER=${{ secrets.MYSQL_USER }}
+            export MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+            export MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build api -d
           script_stop: true
