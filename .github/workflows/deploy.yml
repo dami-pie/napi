@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  access-server:
+  access-server-and-compose-containers:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
