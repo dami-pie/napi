@@ -1,9 +1,10 @@
 package config
 
 import (
-	"github.com/joho/godotenv"
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 var (
@@ -16,7 +17,7 @@ var (
 	KeyFile            = ""
 )
 
-func init() {
+func LoadEnv() {
 	//durante o modo de testes, os testes não procuram pela .env na raiz do projeto, mas sim na pasta onde o teste é executado
 	//https://github.com/joho/godotenv/issues/43
 	err := godotenv.Load(os.Getenv("TEST_WD") + "\\.env")

@@ -1,11 +1,12 @@
 package routes
 
 import (
-	"github.com/dami-pie/napi/src/controllers"
 	"net/http"
+
+	"github.com/dami-pie/napi/src/controllers"
 )
 
-var apiRoutes = []Route{
+var AuthRoutes = []Route{
 	{
 		URI:                "/authenticate",
 		Metodo:             http.MethodPost,
