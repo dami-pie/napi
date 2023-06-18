@@ -2,11 +2,12 @@ package controllers
 
 import (
 	"errors"
-	"github.com/dami-pie/napi/models"
-	"github.com/dami-pie/napi/src/auth"
-	"github.com/dami-pie/napi/src/responses"
 	"log"
 	"net/http"
+
+	"github.com/dami-pie/napi/models"
+	"github.com/dami-pie/napi/src/responses"
+	auth "github.com/dami-pie/napi/src/services"
 )
 
 func Login(res http.ResponseWriter, req *http.Request) {

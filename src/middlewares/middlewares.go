@@ -1,10 +1,11 @@
 package middlewares
 
 import (
-	"github.com/dami-pie/napi/src/auth"
-	"github.com/dami-pie/napi/src/responses"
 	"log"
 	"net/http"
+
+	"github.com/dami-pie/napi/src/responses"
+	auth "github.com/dami-pie/napi/src/services"
 )
 
 // Escreve as informações da requisição no terminal

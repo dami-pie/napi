@@ -2,12 +2,13 @@ package server
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+
 	"github.com/dami-pie/napi/src/config"
 	"github.com/dami-pie/napi/src/router"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"log"
-	"net/http"
 )
 
 type Server struct {
@@ -16,9 +17,11 @@ type Server struct {
 }
 
 func NewServer() *Server {
+	config.LoadEnv()
+
 	return &Server{
 		port:   config.Port,
-		routes: router.AddRoutes(),
+		routes: router.ConfigRoutes(),
 	}
 }
 

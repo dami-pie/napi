@@ -1,9 +1,10 @@
 package config
 
 import (
-	"github.com/joho/godotenv"
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 var (
@@ -16,7 +17,7 @@ var (
 	KeyFile            = ""
 )
 
-func init() {
+func LoadEnv() {
 	err := godotenv.Load(".env")
 
 	if err != nil {
