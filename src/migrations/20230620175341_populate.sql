@@ -11,8 +11,6 @@ VALUES (1, "Bloco K"),
 (5, "Bloco C"),
 (6, "Salas Professores");
 
-
-
 INSERT INTO room (roomNumber, zoneId, roomBuild)
 VALUES (1, 6, "P"),
 (2, 6, "P"),
@@ -33,13 +31,11 @@ VALUES (1, 6, "P"),
 (2, 5, "C"),
 (3, 5, "C");
 
-
 INSERT INTO userGroup (userGroupId, userGroupDesc)
 VALUES (1, "Professores"),
 (2, "Funcionarios"),
 (3, "AlunosGraduacao"),
 (4, "AlunosMestrado");
-
 
 INSERT INTO accessPermit (accessPermitDesc, userGroupId, zoneId)
 VALUES ("Acesso prof sala prof", 1, 1),
@@ -62,28 +58,28 @@ VALUES ("Acesso prof sala prof", 1, 1),
 ("Acesso Alunos sala mestrado", 4, 1);
 
 
-INSERT INTO userdata (userName, userEmail, userGroupId)
-VALUES ("Bruno Fernandes ", "bruno@ecomp.com.br", 1),
-("Alexandre Maciel", "alexandre@ecomp.com.br", 1),
-("Luis Menezes", "luis@ecomp.com.br", 1),
-("Tarciana Dias", "tarciana@ecomp.com.br", 1),
-("Diego Rativa", "rativa@ecomp.com.br", 1),
-("Tio da Limpeza", "tio@ecomp.com.br", 2),
-("Tia da Limpeza", "limpeza@ecomp.com.br", 2),
-("MacGyver", "gyver@ecomp.com.br", 2),
-("Lucas Azevedo", "azevedo@ecomp.com.br", 3),
-("Marta Maria", "marta@ecomp.com.br", 3),
-("Murilo Antonio", "murilo@ecomp.com.br", 3),
-("Helio Augusto", "helio@ecomp.com.br", 3),
-("William Alves", "will@ecomp.com.br", 3),
-("Andre Escorel", "escorel@ecomp.com.br", 3),
-("Erick Verissimo", "erick@ecomp.com.br", 3),
-("Glauco Cartaxo", "glauco@ecomp.com.br", 3),
-("Thales Evaristo", "thales@ecomp.com.br", 3),
-("Heleno", "heleno@ecomp.com.br", 4),
-("Furilo Marias", "furilo@ecomp.com.br", 4),
-("Popinho", "popers@ecomp.com.br", 4),
-("Willames", "uiu@ecomp.com.br", 4);
+INSERT INTO userdata (userEmail, userGroupId)
+VALUES ("bruno@ecomp.com.br", 1),
+("alexandre@ecomp.com.br", 1),
+("luis@ecomp.com.br", 1),
+("tarciana@ecomp.com.br", 1),
+("rativa@ecomp.com.br", 1),
+("tio@ecomp.com.br", 2),
+("limpeza@ecomp.com.br", 2),
+("gyver@ecomp.com.br", 2),
+("azevedo@ecomp.com.br", 3),
+("marta@ecomp.com.br", 3),
+("murilo@ecomp.com.br", 3),
+("helio@ecomp.com.br", 3),
+("will@ecomp.com.br", 3),
+("escorel@ecomp.com.br", 3),
+("erick@ecomp.com.br", 3),
+("glauco@ecomp.com.br", 3),
+("thales@ecomp.com.br", 3),
+("heleno@ecomp.com.br", 4),
+("furilo@ecomp.com.br", 4),
+("popers@ecomp.com.br", 4),
+("uiu@ecomp.com.br", 4);
 
 
 INSERT INTO userCard (cardEnable, userID, cardHash)
@@ -121,6 +117,7 @@ VALUES (2,"P", 0, 1, '2023-06-14',NULL),
 (1,"I", 0, 3, '2023-06-14',NULL),
 (2,"B", 0, 1, '2023-06-14',NULL),
 (3,"K", 0, 5, '2023-06-14',NULL);
+
 
 
 -- +goose Down

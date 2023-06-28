@@ -2,10 +2,6 @@
 -- +goose StatementBegin
 SELECT 'up SQL query';
 -- +goose StatementEnd
-
-DROP DATABASE IF EXISTS dami;
-CREATE DATABASE dami;
-
 CREATE TABLE userGroup(
     userGroupId int PRIMARY KEY,
     userGroupDesc varchar(50) NOT NULL
@@ -60,8 +56,16 @@ CREATE TABLE entranceLog(
 
 ALTER TABLE userCard ALTER cardEnable SET DEFAULT 0;
 
-
 -- +goose Down
 -- +goose StatementBegin
 SELECT 'down SQL query';
 -- +goose StatementEnd
+
+--down
+DROP TABLE entranceLog;
+DROP TABLE userCard;
+DROP TABLE room;
+DROP TABLE accessPermit;
+DROP TABLE zones;
+DROP TABLE userdata;
+DROP TABLE userGroup;
