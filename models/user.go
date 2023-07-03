@@ -8,7 +8,8 @@ import (
 )
 
 type User struct {
-	Email string `json:"email"`
+	Email   string `json:"email"`
+	GroupID uint64 `json:"groupID"`
 }
 
 func (user *User) ValidateUser() error {

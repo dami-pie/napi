@@ -1,13 +1,14 @@
-package auth
+package services
 
 import (
 	"errors"
 	"fmt"
-	"github.com/dami-pie/napi/src/config"
-	"github.com/dgrijalva/jwt-go/v4"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/dami-pie/napi/src/config"
+	"github.com/dgrijalva/jwt-go/v4"
 )
 
 // Gera o token do usuário baseado no seu email e hora atual
