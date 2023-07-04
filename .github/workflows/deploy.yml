@@ -1,12 +1,14 @@
-name: deploy-to-server
-run-name: Fazendo deploy da main em produção
+name: Deploy para o server
+run-name: Aplicando ${{ github.ref_name }} na main e fazendo o deploy em produção
 on:
   push:
     branches:
       - main
 
 jobs:
-  access-server-and-compose-containers:
+  update-api:
+    needs: test-code
+    name: Atualizar API
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
