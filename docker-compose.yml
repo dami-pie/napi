@@ -2,6 +2,8 @@ services:
   api:
     container_name: dami-api
     hostname: dami
+    depends_on:
+      - database
     build:
       context: .
       dockerfile: dev.Dockerfile
@@ -10,22 +12,23 @@ services:
       - 8080:443
     volumes:
       - api:/dami/certs
-    environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: dbu
-      MYSQL_PASSWORD: brunorubro
-      MYSQL_DB: dami
-    depends_on:
-      - mysql
-  mysql:
+  database:
     container_name: dami-db
     hostname: database
     image: mysql
-    ports: #necessário mapear do conteiner para o host para acessar o mysql da workbench, por exemplo
+    ports:
+      #Necessário mapear do contêiner para o host para acessar o MySQL da workbench, por exemplo
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
+      #SQL de schemas e de população
+      - "./sql/dami.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "./sql/populacaoDami.sql:/docker-entrypoint-initdb.d/2.sql"
     environment:
+      #Ao criar um MYSQL_USER, MYSQL_PASSWORD e MYSQL_DATABASE, o contêiner do MySQL cria o banco,
+      #cria o usuário, e dá a ele todas as permissões necessárias no banco especificado
+      MYSQL_USER: dami
+      MYSQL_PASSWORD: damitest
       MYSQL_ROOT_PASSWORD: brunorubro
       MYSQL_DATABASE: dami
 
