@@ -1,5 +1,7 @@
 services:
   api:
+    depends_on:
+      - database
     ports:
       - 33334:443
   database:

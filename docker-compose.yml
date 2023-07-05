@@ -8,17 +8,12 @@ services:
       context: .
       dockerfile: dev.Dockerfile
     command: sh -c "./dami-api"
-    ports:
-      - 8080:443
     volumes:
       - api:/dami/certs
   database:
     container_name: dami-db
     hostname: database
     image: mysql
-    ports:
-      #Necessário mapear do contêiner para o host para acessar o MySQL da workbench, por exemplo
-      - 3306:3306
     volumes:
       - db:/var/lib/mysql
       #SQL de schemas e de população
