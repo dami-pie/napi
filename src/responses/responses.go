@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/dami-pie/napi/src/config"
+	"github.com/go-playground/validator/v10"
 	"io"
 	"log"
 	"net/http"
@@ -74,6 +75,13 @@ func DecodeJSON(w http.ResponseWriter, r *http.Request, dst any) error {
 	err = dec.Decode(&struct{}{})
 	if err != io.EOF {
 		msg := "O corpo da request só pode conter um único objeto JSON"
+		return &MalformedRequest{Status: http.StatusBadRequest, Msg: msg}
+	}
+
+	validate := validator.New()
+	err = validate.Struct(dst)
+	if err != nil {
+		msg := "O corpo da request não está válido para processamento"
 		return &MalformedRequest{Status: http.StatusBadRequest, Msg: msg}
 	}
 

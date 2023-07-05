@@ -9,8 +9,8 @@ import (
 )
 
 type OTP struct {
-	Tempo time.Time `json:"time"`
-	Key   string    `json:"key"`
+	Tempo time.Time `json:"time" validate:"required"`
+	Key   string    `json:"key" validate:"required"`
 }
 
 func (otp *OTP) ValidateKey() (bool, error) {
