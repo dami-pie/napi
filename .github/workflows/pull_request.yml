@@ -1,5 +1,5 @@
 name: Testa código do pull request
-run-name: Testando a branch ${{ github.ref_name }}
+run-name: Testando a branch ${{ github.base_ref }}
 
 on: pull_request
 
@@ -19,4 +19,5 @@ jobs:
         run: go mod download
 
       - name: Testa
+        working-directory: .
         run: go test -v ./...
