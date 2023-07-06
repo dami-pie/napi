@@ -1,0 +1,23 @@
+name: Testa código do pull request
+run-name: Testando a branch ${{ github.ref_name }}
+
+on: pull_request
+
+jobs:
+  test-code:
+    name: Testar código
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Faz o setup do Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: Instala dependências
+        run: go mod download
+
+      - name: Testa
+        working-directory: .
+        run: go test -v ./...

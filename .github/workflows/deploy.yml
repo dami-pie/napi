@@ -1,12 +1,13 @@
-name: deploy-to-server
-run-name: Fazendo deploy da main em produção
+name: Deploy para o server
+run-name: Fazendo o deploy em produção
 on:
   push:
     branches:
       - main
 
 jobs:
-  access-server-and-compose-containers:
+  update-api:
+    name: Atualizar API
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
