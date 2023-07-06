@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -27,6 +28,11 @@ func LoadEnv() {
 	}
 
 	Port = os.Getenv("PORT")
+	StringConexaoBanco = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"),
+	)
 	JWTKey = []byte(os.Getenv("JWT_SECRET"))
 	OTPKey = os.Getenv("OTP_SECRET")
 	Device = os.Getenv("DEVICE")

@@ -9,7 +9,7 @@ import (
 // Configurar coloca todas as rotas dentro do router
 func ConfigRoutes() *mux.Router {
 	r := mux.NewRouter()
-	routes := routes.AuthRoutes
+	routes := append(routes.AuthRoutes, routes.UserRoutes...)
 
 	for _, route := range routes {
 		if route.RequerAutenticacao {
