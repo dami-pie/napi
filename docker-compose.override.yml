@@ -1,0 +1,13 @@
+services:
+  api:
+    depends_on:
+      - database
+    ports:
+      - 8080:443
+  database:
+    ports: #necessário mapear do conteiner para o host para acessar o mysql da workbench, por exemplo
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: dami
+

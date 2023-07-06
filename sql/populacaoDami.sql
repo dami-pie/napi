@@ -1,3 +1,5 @@
+USE dami;
+
 INSERT INTO zones (zoneId, zoneDesc)
 VALUES (1, "Bloco K"),
 (2, "Bloco B"),
