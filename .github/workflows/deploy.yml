@@ -1,5 +1,5 @@
 name: Deploy para o server
-run-name: Aplicando ${{ github.ref_name }} na main e fazendo o deploy em produção
+run-name: Fazendo o deploy em produção
 on:
   push:
     branches:
@@ -7,7 +7,6 @@ on:
 
 jobs:
   update-api:
-    needs: test-code
     name: Atualizar API
     runs-on: ubuntu-latest
     steps:
