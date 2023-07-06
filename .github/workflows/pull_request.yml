@@ -1,5 +1,5 @@
 name: Testa código do pull request
-run-name: Testando a branch ${{ github.base_ref }}
+run-name: Testando a branch ${{ github.ref_name }}
 
 on: pull_request
 
