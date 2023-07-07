@@ -41,15 +41,13 @@ CREATE TABLE userCard(
 );
 
 CREATE TABLE entranceLog(
-    roomNumber int,
-    entranceType int,
-    roomBuild varchar(1),
-    userID int,
+    roomNumber int NOT NULL,
+    entranceType int NOT NULL,
+    roomBuild varchar(1) NOT NULL,
+    userID int NOT NULL,
     dateHour DATE NOT NULL,
     cardHash varchar(50),
-    FOREIGN KEY (userID) REFERENCES userdata(userID),
-    CONSTRAINT roomKey FOREIGN KEY (roomNumber, roomBuild) REFERENCES room (roomNumber, roomBuild),
-    FOREIGN KEY (cardHash) REFERENCES userCard(cardHash)
+    CONSTRAINT roomKey FOREIGN KEY (roomNumber, roomBuild) REFERENCES room (roomNumber, roomBuild)
 );
 
 ALTER TABLE userCard ALTER cardEnable SET DEFAULT 0;
