@@ -97,6 +97,8 @@ func EncodeJSON(res http.ResponseWriter, statusCode int, data any) {
 	}
 }
 
+// TODO(will): essa função deveria retornar a string do erro ou uma própria string formatada? essa função pode ser substituída pelo http.Error()?
+
 func Err(res http.ResponseWriter, statusCode int, err error) {
 	EncodeJSON(res, statusCode, struct {
 		Err string `json:"error"`
@@ -104,6 +106,8 @@ func Err(res http.ResponseWriter, statusCode int, err error) {
 		Err: err.Error(),
 	})
 }
+
+// TODO(will): essa função aqui vai morrer depois que o broker chegar
 
 func SendOpenCommand(r *http.Request) {
 	body, _ := json.Marshal(map[string]any{
