@@ -51,5 +51,4 @@ CREATE TABLE entranceLog(
     CONSTRAINT roomKey FOREIGN KEY (roomNumber, roomBuild) REFERENCES room (roomNumber, roomBuild),
     FOREIGN KEY (cardHash) REFERENCES userCard(cardHash)
 );
-
 ALTER TABLE userCard ALTER cardEnable SET DEFAULT 0;
