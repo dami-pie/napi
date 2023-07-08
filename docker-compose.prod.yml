@@ -5,6 +5,8 @@ services:
     ports:
       - 33334:443
   database:
+    expose:
+      - 3306
     environment:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
