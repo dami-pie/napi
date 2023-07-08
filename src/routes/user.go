@@ -13,4 +13,22 @@ var UserRoutes = []Route{
 		Funcao:             controllers.CreateUser,
 		RequerAutenticacao: false,
 	},
+	{
+		URI:                "/user/delete/{id}",
+		Metodo:             http.MethodDelete,
+		Funcao:             controllers.DeleteUser,
+		RequerAutenticacao: false,
+	},
+	{
+		URI:                "/user/update/{id}",
+		Metodo:             http.MethodPut,
+		Funcao:             controllers.UpdateUser,
+		RequerAutenticacao: false,
+	},
+	{
+		URI:                "/user/get/{id}",
+		Metodo:             http.MethodGet,
+		Funcao:             controllers.GetUser,
+		RequerAutenticacao: false,
+	},
 }
