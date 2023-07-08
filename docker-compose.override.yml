@@ -6,8 +6,9 @@ services:
       - 8080:443
   database:
     ports: #necessário mapear do conteiner para o host para acessar o mysql da workbench, por exemplo
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: dami
+      - 3307:3306
+    volumes:
+      #SQL de schemas e de população
+      - "./sql/dami.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "./sql/populacaoDami.sql:/docker-entrypoint-initdb.d/2.sql"
 

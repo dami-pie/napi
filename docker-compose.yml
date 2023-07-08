@@ -16,12 +16,9 @@ services:
     image: mysql
     volumes:
       - db:/var/lib/mysql
-      #SQL de schemas e de população
-      - "./sql/dami.sql:/docker-entrypoint-initdb.d/1.sql"
-      - "./sql/populacaoDami.sql:/docker-entrypoint-initdb.d/2.sql"
     environment:
       #Ao criar um MYSQL_USER, MYSQL_PASSWORD e MYSQL_DATABASE, o contêiner do MySQL cria o banco,
-      #cria o usuário, e dá a ele todas as permissões necessárias no banco especificado
+      #seta a senha pra logar com root, cria o usuário com a senha definida e dá a ele todas as permissões necessárias no banco especificado
       MYSQL_USER: dami
       MYSQL_PASSWORD: damitest
       MYSQL_ROOT_PASSWORD: brunorubro
