@@ -4,9 +4,12 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-
 	"github.com/dami-pie/napi/models"
+	"github.com/go-sql-driver/mysql"
 )
+
+// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
+const ERR_DUPLICATE_ENTRY = 1062
 
 //TODO(will): os repositórios deveriam implementar uma interface?
 
@@ -29,6 +32,11 @@ func (repository UserRepository) Create(user models.User) (uint64, error) {
 
 	result, err := statement.Exec(user.Email, user.GroupID)
 	if err != nil {
+		if sqlerr, ok := err.(*mysql.MySQLError); ok {
+			if sqlerr.Number == ERR_DUPLICATE_ENTRY {
+				return 0, fmt.Errorf("create: já existe um usuário com esses dados")
+			}
+		}
 		return 0, fmt.Errorf("create: não foi possível executar a declaração SQL: [%w]", err)
 	}
 
