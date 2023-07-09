@@ -2,6 +2,7 @@ package responses
 
 import (
 	"errors"
+	"github.com/dami-pie/napi/models"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -31,7 +32,8 @@ func TestDecodeJSON(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			err := DecodeJSON(&httptest.ResponseRecorder{}, test.req, "")
+			var a models.User
+			err := DecodeJSON(&httptest.ResponseRecorder{}, test.req, a)
 
 			var mr *MalformedRequest
 			if errors.As(err, &mr) { //unwrap error

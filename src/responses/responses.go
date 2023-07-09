@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/dami-pie/napi/models"
 	"github.com/dami-pie/napi/src/config"
 	"github.com/go-playground/validator/v10"
 	"io"
@@ -22,7 +23,7 @@ func (mr *MalformedRequest) Error() string {
 	return mr.Msg
 }
 
-func DecodeJSON(w http.ResponseWriter, r *http.Request, dst any) error {
+func DecodeJSON[K models.Modelable](w http.ResponseWriter, r *http.Request, dst K) error {
 	value := r.Header.Get("Content-Type")
 	if value != "" {
 		if value != "application/json" {
@@ -78,11 +79,15 @@ func DecodeJSON(w http.ResponseWriter, r *http.Request, dst any) error {
 		return &MalformedRequest{Status: http.StatusBadRequest, Msg: msg}
 	}
 
+	//TODO(will): é necessário verificar o tipo do erro de validação
 	validate := validator.New()
 	err = validate.Struct(dst)
 	if err != nil {
-		msg := "O corpo da request não está válido para processamento"
-		return &MalformedRequest{Status: http.StatusBadRequest, Msg: msg}
+		var invalid *validator.InvalidValidationError
+		if errors.As(err, &invalid) {
+			msg := "O corpo da request não está válido para processamento"
+			return &MalformedRequest{Status: http.StatusBadRequest, Msg: msg}
+		}
 	}
 
 	return nil

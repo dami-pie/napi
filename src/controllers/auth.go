@@ -12,7 +12,7 @@ import (
 
 func Login(res http.ResponseWriter, req *http.Request) {
 	var usuario models.User
-	err := responses.DecodeJSON(res, req, &usuario)
+	err := responses.DecodeJSON(res, req, usuario)
 	if err != nil {
 		var mr *responses.MalformedRequest
 		log.Printf("[%s %s %s] -> %s\n", req.Method, req.RequestURI, req.Host, err.Error())
@@ -50,7 +50,7 @@ func ValidateOTP(res http.ResponseWriter, req *http.Request) {
 	}
 
 	var otp models.OTP
-	err = responses.DecodeJSON(res, req, &otp)
+	err = responses.DecodeJSON(res, req, otp)
 	if err != nil {
 		var mr *responses.MalformedRequest
 		log.Printf("[%s %s %s] -> %s\n", req.Method, req.RequestURI, req.Host, err.Error())
