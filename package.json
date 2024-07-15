@@ -1,0 +1,36 @@
+{
+  "name": "dami-api",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "repository": "https://github.com/dami-pie/napi",
+  "author": "Andre Escorel <gustavo.escorel@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mqtt": "^5.8.0",
+    "pg": "^8.12.0",
+    "sqlite3": "^5.1.7",
+    "uuidv4": "^6.2.13"
+  },
+  "scripts": {
+    "build:commonjs": "rimraf lib && tsc --target es5 --outDir lib --module commonjs --declaration",
+    "build:es": "rimraf es && tsc --target es6 --outDir es --module es6",
+    "build": "npm run build:commonjs && npm run build:es",
+    "ts": "ts-node src/",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "types": "./lib/index.d.ts",
+  "jsnext:main": "./es/index.js",
+  "module": "./es/index.js"
+}
