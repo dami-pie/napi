@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Zone {
+  id      Int      @id @default(autoincrement())
+  code    String   @unique
+  name    String
+  devices Device[]
+}
+
+model Device {
+  id      String  @id
+  secret  String
+  name    String
+  enabled Boolean @default(false)
+  zoneId  Int
+  zone    Zone    @relation(fields: [zoneId], references: [id])
+}

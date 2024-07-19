@@ -1,13 +1,21 @@
 {
   "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    "target": "es2016",
     "lib": [
       "es6"
     ],
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true
-  },
-  "files": [
-    "src/index.ts"
-  ]
+    "module": "commonjs",
+    "rootDir": "src",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    // "outFile": "./",                                 
+    "outDir": "build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "skipLibCheck": true
+  }
 }
